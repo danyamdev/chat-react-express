@@ -1,11 +1,35 @@
 import React from 'react';
 
-import { Message } from "components/index";
+import { DialogItem, Message } from "components/index";
 
 import './style.scss'
 
 const Home: React.FC = () => (
   <section className="home">
+    <div className="dialogs">
+      <DialogItem
+        user={{
+          fullname: "Федор Достоевский",
+          isOnline: false
+        }}
+        unreaded={999}
+      />
+      <DialogItem
+        user={{
+          fullname: "Федор Достоевский",
+          isOnline: true
+        }}
+        unreaded={0}
+      />
+      <DialogItem
+        user={{
+          fullname: "Федор Достоевский",
+          isOnline: false
+        }}
+        unreaded={0}
+      />
+    </div>
+
     <Message
       avatar="https://pp.userapi.com/c846017/v846017841/18957c/1iVH9FKXi4E.jpg?ava=1"
       text="Мы тут недавно войска Ариовиста разбили, чуваки хотели закрепиться на галльских землях, лол 🌝"
@@ -31,6 +55,19 @@ const Home: React.FC = () => (
       date="Sun Apr 21 2019 21:59:29"
       isMe={true}
       isReaded={false}
+    />
+    <Message
+      avatar="https://pp.userapi.com/c846017/v846017841/18957c/1iVH9FKXi4E.jpg?ava=1"
+      attachments={[
+        {
+          filename: "image.jpg",
+          url: "https://source.unsplash.com/100x100/?random=1&nature,water"
+        }
+      ]}
+    />
+    <Message
+      avatar="https://pp.userapi.com/c846017/v846017841/18957c/1iVH9FKXi4E.jpg?ava=1"
+      isTyping
     />
   </section>
 );

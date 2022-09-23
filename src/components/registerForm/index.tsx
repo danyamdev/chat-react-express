@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 import { Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
+import {
+  InfoCircleOutlined,
+  LockOutlined,
+  MailOutlined,
+  UserOutlined
+} from "@ant-design/icons";
 
 import { Block, Button } from 'components/index';
-import {EllipsisOutlined, InfoCircleOutlined, MailOutlined, UserOutlined} from "@ant-design/icons";
 
 const RegisterForm: React.FC = () => {
   const [success, setSuccess] = useState<boolean>(false);
@@ -63,7 +68,7 @@ const RegisterForm: React.FC = () => {
               ]}
             >
               <Input
-                prefix={<EllipsisOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
+                prefix={<LockOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
                 size="large"
                 type="password"
                 placeholder="Password"

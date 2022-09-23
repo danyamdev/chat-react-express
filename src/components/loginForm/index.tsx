@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Input } from 'antd';
 import { Link } from 'react-router-dom';
-import { EllipsisOutlined, UserOutlined } from '@ant-design/icons';
+import { LockOutlined, MailOutlined } from '@ant-design/icons';
 
 import { Block, Button } from "components/index";
 
@@ -20,18 +20,19 @@ const LoginForm: React.FC = () => {
         <Form name="login" className="login-form" onFinish={onFinish}>
           <Form.Item
             // validateStatus="success" hasFeedback
-            name="username"
+            name="email"
             rules={[
               {
                 required: true,
-                message: 'Please input your username!',
+                message: 'Please input your email!',
               },
             ]}
           >
             <Input
-              prefix={<UserOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
+              id="email"
+              prefix={<MailOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
               size="large"
-              placeholder="Username"
+              placeholder="E-Mail"
             />
           </Form.Item>
           <Form.Item
@@ -44,7 +45,7 @@ const LoginForm: React.FC = () => {
             ]}
           >
             <Input
-              prefix={<EllipsisOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
+              prefix={<LockOutlined style={{color: 'rgba(0,0,0,.25)'}}/>}
               size="large"
               type="password"
               placeholder="Password"
