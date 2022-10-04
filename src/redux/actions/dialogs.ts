@@ -1,5 +1,7 @@
 import { dialogsApi } from "utils/api";
 
+import dialogsJSON from '../../dialogs.json';
+
 const actions = {
   setDialogs: (items: any) => ({
     type: "DIALOGS:SET_ITEMS",
@@ -11,9 +13,9 @@ const actions = {
   }),
   fetchDialogs: () => (dispatch: any) => {
     // @ts-ignore
-    dialogsApi.getAll().then(({ data }) => {
-      dispatch(actions.setDialogs(data));
-    });
+    // dialogsApi.getAll().then(({ data }) => {
+      dispatch(actions.setDialogs(dialogsJSON));
+    // });
   }
 };
 
