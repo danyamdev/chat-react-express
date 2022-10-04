@@ -1,8 +1,16 @@
 import express from "express";
+import socket from "socket.io";
+
 import { MessageModel } from "../models";
 
 class MessageController {
-  index(req: express.Request, res: express.Response) {
+  io: socket.Server;
+
+  constructor(io: socket.Server) {
+    this.io = io;
+  }
+
+  index = (req: express.Request, res: express.Response) => {
     const dialogId = req.query.dialog;
 
     // @ts-ignore
@@ -16,10 +24,11 @@ class MessageController {
         }
         return res.json(messages);
       });
-  }
+  };
 
-  create(req: express.Request, res: express.Response) {
-    const userId = "5d1ba4777a5a9a1264ba240c";
+  create = (req: express.Request, res: express.Response) => {
+    // @ts-ignore
+    const userId = req.user._id;
 
     const postData = {
       text: req.body.text,
@@ -32,14 +41,22 @@ class MessageController {
     message
       .save()
       .then((obj: any) => {
-        res.json(obj);
+        obj.populate("dialog", (err: any, message: any) => {
+          if (err) {
+            return res.status(500).json({
+              message: err
+            });
+          }
+          res.json(message);
+          this.io.emit("SERVER:NEW_MESSAGE", message);
+        });
       })
       .catch((reason: any) => {
         res.json(reason);
       });
-  }
+  };
 
-  delete(req: express.Request, res: express.Response) {
+  delete = (req: express.Request, res: express.Response) => {
     const id: string = req.params.id;
     MessageModel.findOneAndRemove({ _id: id })
       .then((message: any) => {
@@ -54,7 +71,7 @@ class MessageController {
           message: `Message not found`
         });
       });
-  }
+  };
 }
 
 export default MessageController;
