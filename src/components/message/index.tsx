@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 import { PauseOutlined, PlayCircleOutlined } from '@ant-design/icons';
+// @ts-ignore
+import {  } from "@emoji-mart/react";
 
-import { Time, IconReaded } from 'components/index';
+import { Time, IconReaded, Avatar } from 'components/index';
 
 import { convertCurrentTime } from 'utils/helpers';
 
@@ -69,7 +71,6 @@ const MessageAudio: React.FC<TMessageAudio> = ({ audioSrc }) => {
     });
   }, []);
 
-  console.log('===>audioSrc', audioSrc);
   return (
     <div className="message__audio">
       <audio ref={audioElem} src={audioSrc} preload="auto" />
@@ -136,12 +137,16 @@ const Message: React.FC<TMessage> = ({
         <IconReaded isMe={isMe} isReaded={isReaded} />
       )}
       <div className="message__avatar">
-        <img src={avatar} alt={`Avatar ${user?.fullname}`} />
+        <Avatar user={user} />
       </div>
       <div className="message__info">
         {(audio || text || isTyping) && (
           <div className="message__bubble">
-            {text && <p className="message__text">{text}</p>}
+            {text && (
+              <p className="message__text">
+                111
+              </p>
+            )}
             {isTyping && (
               <div className="message__typing">
                 <span />

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'antd';
-import {EllipsisOutlined, FormOutlined, TeamOutlined} from '@ant-design/icons';
+import { EllipsisOutlined, FormOutlined, TeamOutlined } from '@ant-design/icons';
 
-import { Messages, Status, ChatInput } from 'components/index';
-import { Dialogs } from 'containers/index';
+import { Status, ChatInput } from "components";
+import { Dialogs, Messages } from "containers";
 
 import dialogsJSON from '../../dialogs.json';
 

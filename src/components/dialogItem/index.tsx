@@ -14,19 +14,34 @@ const getMessageTime = (created_at: number | Date) => {
 };
 
 type TDialogItem = {
+  _id: string | number;
   user: any;
   message?: any;
   undread: number;
   created_at: any;
   text: string;
   isMe: boolean;
+  currentDialogId: string | number;
+  onSelect: () => void;
 }
 
-const DialogItem: React.FC<TDialogItem> = ({ user, undread, created_at, text, isMe  }) => (
+const DialogItem: React.FC<TDialogItem> = ({
+    _id,
+    user,
+    undread,
+    created_at,
+    text,
+    isMe,
+    currentDialogId,
+    onSelect
+  }) => (
   <div
     className={classNames("dialogs__item", {
-      "dialogs__item--online": user.isOnline
+      "dialogs__item--online": user.isOnline,
+      "dialogs__item--selected": currentDialogId === _id
     })}
+    // TODO: ref
+    onClick={onSelect.bind(this, _id)}
   >
     <div className="dialogs__item-avatar">
       <Avatar user={user} />

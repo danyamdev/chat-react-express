@@ -11,9 +11,19 @@ type TDialogs = {
   userId: any;
   onSearch: any;
   inputValue: any;
+  currentDialogId: any;
+  onSelectDialog: any;
 }
 
-const Dialogs: React.FC<TDialogs> = ({ items, userId, onSearch, inputValue }) => (
+
+const Dialogs: React.FC<TDialogs> = ({
+  items,
+  userId,
+  onSearch,
+  inputValue,
+  currentDialogId,
+  onSelectDialog
+  }) => (
   <div className="dialogs">
     <div className="dialogs__search">
       <Input.Search
@@ -24,7 +34,13 @@ const Dialogs: React.FC<TDialogs> = ({ items, userId, onSearch, inputValue }) =>
     </div>
     {items.length ? (
       orderBy(items, ["created_at"], ["desc"]).map(item => (
-        <DialogItem key={item._id} isMe={item.user._id === userId} {...item} />
+        <DialogItem
+          onSelect={onSelectDialog}
+          key={item._id}
+          isMe={item.user._id === userId}
+          currentDialogId={currentDialogId}
+          {...item}
+        />
       ))
     ) : (
       <Empty
