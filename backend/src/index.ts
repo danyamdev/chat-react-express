@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { createServer } from "http";
+import cors from "cors";
 
 import "./core/db";
 import createRoutes from "./core/routes";
@@ -11,6 +12,8 @@ const http = createServer(app);
 const io = createSocket(http);
 
 dotenv.config();
+
+app.use(cors())
 
 createRoutes(app, io);
 

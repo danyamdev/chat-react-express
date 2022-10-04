@@ -7,7 +7,7 @@ import { loginValidation } from "../utils/validations";
 
 import { UserCtrl, DialogCtrl, MessageCtrl } from "../controllers";
 
-const createRoutes = (app: express.Express, io: socket.Server) => {
+const createRoutes = (app: any, io: any) => {
   const UserController = new UserCtrl(io);
   const DialogController = new DialogCtrl(io);
   const MessageController = new MessageCtrl(io);

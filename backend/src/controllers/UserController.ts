@@ -15,7 +15,7 @@ class UserController {
     this.io = io;
   }
 
-  show = (req: express.Request, res: express.Response) => {
+  show = (req: any, res: any) => {
     const id: string = req.params.id;
     UserModel.findById(id, (err: any, user: any) => {
       if (err) {
@@ -27,7 +27,7 @@ class UserController {
     });
   };
 
-  getMe = (req: any, res: express.Response) => {
+  getMe = (req: any, res: any) => {
     const id: string = req.user._id;
     UserModel.findById(id, (err: any, user: any) => {
       if (err) {
@@ -39,7 +39,7 @@ class UserController {
     });
   };
 
-  create = (req: express.Request, res: express.Response) => {
+  create = (req: any, res: any) => {
     const postData = {
       email: req.body.email,
       fullname: req.body.fullname,
@@ -56,7 +56,7 @@ class UserController {
       });
   };
 
-  delete = (req: express.Request, res: express.Response) => {
+  delete = (req: any, res: any) => {
     const id: string = req.params.id;
     UserModel.findOneAndRemove({ _id: id })
       .then((user: any) => {
@@ -73,7 +73,7 @@ class UserController {
       });
   };
 
-  login = (req: express.Request, res: express.Response) => {
+  login = (req: any, res: any) => {
     const postData = {
       email: req.body.email,
       password: req.body.password,

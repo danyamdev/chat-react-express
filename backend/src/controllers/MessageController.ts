@@ -10,7 +10,7 @@ class MessageController {
     this.io = io;
   }
 
-  index = (req: express.Request, res: express.Response) => {
+  index = (req: any, res: any) => {
     const dialogId = req.query.dialog;
 
     // @ts-ignore
@@ -26,7 +26,7 @@ class MessageController {
       });
   };
 
-  create = (req: express.Request, res: express.Response) => {
+  create = (req: any, res: any) => {
     // @ts-ignore
     const userId = req.user._id;
 
@@ -56,7 +56,7 @@ class MessageController {
       });
   };
 
-  delete = (req: express.Request, res: express.Response) => {
+  delete = (req: any, res: any) => {
     const id: string = req.params.id;
     MessageModel.findOneAndRemove({ _id: id })
       .then((message: any) => {
